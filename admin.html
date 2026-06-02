@@ -1,0 +1,682 @@
+<!-- Admin password page-la sidebar visible irukkum full code -->
+<!-- Password: admin123 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#020617;
+display:flex;
+min-height:100vh;
+overflow-y:auto;
+color:white;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:270px;
+height:100vh;
+background:#0f172a;
+padding:20px;
+position:fixed;
+left:0;
+top:0;
+border-right:1px solid rgba(255,255,255,.05);
+z-index:10000;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+margin-bottom:40px;
+}
+
+.logo span{
+color:#38bdf8;
+}
+
+.sidebar a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:15px;
+margin-bottom:12px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+transition:.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+}
+
+.sidebar a.active{
+background:#38bdf8;
+}
+
+/* PASSWORD SCREEN */
+
+.admin-login-screen{
+position:fixed;
+top:0;
+left:270px;
+width:calc(100% - 270px);
+height:100vh;
+background:#020617;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.admin-login-box{
+background:#111827;
+padding:35px;
+border-radius:20px;
+width:350px;
+box-shadow:0 0 25px rgba(56,189,248,.25);
+text-align:center;
+}
+
+.admin-login-box h2{
+color:#38bdf8;
+margin-bottom:20px;
+}
+
+.admin-login-box input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+background:#1e293b;
+color:white;
+outline:none;
+}
+
+.admin-login-box button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#38bdf8;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.error{
+color:red;
+margin-top:10px;
+display:none;
+}
+
+/* MAIN */
+
+.main{
+margin-left:270px;
+width:calc(100% - 270px);
+padding:30px;
+display:none;
+}
+
+.title{
+text-align:center;
+font-size:35px;
+margin-bottom:30px;
+color:#38bdf8;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:#111827;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 20px rgba(56,189,248,.15);
+}
+
+.card i{
+font-size:38px;
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.card h2{
+font-size:32px;
+margin-bottom:5px;
+}
+
+.card p{
+color:#cbd5e1;
+}
+
+.form-box,
+.table-box{
+background:#111827;
+padding:25px;
+border-radius:20px;
+margin-bottom:25px;
+box-shadow:0 0 20px rgba(56,189,248,.15);
+}
+
+.form-box h2,
+.table-box h2{
+margin-bottom:20px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+input,
+button{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+font-size:15px;
+}
+
+input{
+background:#1e293b;
+color:white;
+outline:none;
+}
+
+button{
+background:#38bdf8;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#0ea5e9;
+}
+
+.table-scroll{
+overflow-x:auto;
+border-radius:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:700px;
+}
+
+th,
+td{
+border:1px solid #374151;
+padding:14px;
+text-align:center;
+}
+
+th{
+background:#0f172a;
+color:#38bdf8;
+}
+
+td{
+background:#1e293b;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.sidebar{
+width:80px;
+padding:15px 10px;
+}
+
+.logo{
+font-size:12px;
+text-align:center;
+}
+
+.sidebar a{
+font-size:0;
+justify-content:center;
+}
+
+.sidebar a i{
+font-size:18px;
+}
+
+.admin-login-screen{
+left:80px;
+width:calc(100% - 80px);
+}
+
+.main{
+margin-left:80px;
+width:calc(100% - 80px);
+padding:15px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:25px;
+}
+
+table{
+font-size:13px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="logo">
+Sivam<span>Medicare</span>
+</div>
+
+<a href="index.html">
+<i class="fas fa-home"></i>
+Home
+</a>
+
+<a href="service.html">
+<i class="fas fa-stethoscope"></i>
+Services
+</a>
+
+<a href="doctor-login.html">
+<i class="fas fa-user-doctor"></i>
+Doctor Login
+</a>
+
+<a href="patients.html">
+<i class="fas fa-hospital-user"></i>
+Patients
+</a>
+
+<a href="appointment.html">
+<i class="fas fa-calendar-check"></i>
+Appointment
+</a>
+
+<a href="admin.html" class="active">
+<i class="fas fa-lock"></i>
+Admin Panel
+</a>
+
+</div>
+
+<!-- PASSWORD SCREEN -->
+
+<div class="admin-login-screen" id="adminLoginScreen">
+
+<div class="admin-login-box">
+
+<h2>Admin Password</h2>
+
+<input type="password" id="adminPassword" placeholder="Enter Password">
+
+<button onclick="checkAdminPassword()">
+Open Admin Panel
+</button>
+
+<p class="error" id="passwordError">
+Wrong Password
+</p>
+
+</div>
+</div>
+
+<!-- MAIN -->
+
+<div class="main" id="adminMain">
+
+<h1 class="title">Admin Panel</h1>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<i class="fas fa-user-doctor"></i>
+<h2 id="doctorCount">0</h2>
+<p>Total Doctors</p>
+</div>
+
+<div class="card">
+<i class="fas fa-user-nurse"></i>
+<h2 id="nurseCount">0</h2>
+<p>Total Nurses</p>
+</div>
+
+<div class="card">
+<i class="fas fa-user-injured"></i>
+<h2 id="dailyPatientCount">0</h2>
+<p>Daily Patients</p>
+</div>
+
+<div class="card">
+<i class="fas fa-bed-pulse"></i>
+<h2 id="admittedPatientCount">0</h2>
+<p>Admitted Patients</p>
+</div>
+
+<div class="card">
+<i class="fas fa-user-check"></i>
+<h2 id="dischargeCount">0</h2>
+<p>Discharged Patients</p>
+</div>
+
+</div>
+
+<div class="form-grid">
+
+<div class="form-box">
+
+<h2>Add Doctor</h2>
+
+<form onsubmit="addDoctor(event)">
+
+<input type="text" id="newDoctorId" placeholder="Doctor ID" required>
+<input type="text" id="newDoctorName" placeholder="Doctor Name" required>
+<input type="password" id="newDoctorPassword" placeholder="Doctor Password" required>
+<input type="text" id="newDoctorDepartment" placeholder="Department" required>
+
+<button type="submit">
+Add Doctor
+</button>
+
+</form>
+
+</div>
+
+<div class="form-box">
+
+<h2>Add Nurse</h2>
+
+<form onsubmit="addNurse(event)">
+
+<input type="text" id="newNurseId" placeholder="Nurse ID" required>
+<input type="text" id="newNurseName" placeholder="Nurse Name" required>
+<input type="text" id="newNurseWard" placeholder="Ward" required>
+
+<button type="submit">
+Add Nurse
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2>Doctor List</h2>
+
+<div class="table-scroll">
+
+<table id="doctorTable">
+<tr>
+<th>Doctor ID</th>
+<th>Name</th>
+<th>Password</th>
+<th>Department</th>
+</tr>
+</table>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2>Nurse List</h2>
+
+<div class="table-scroll">
+
+<table id="nurseTable">
+<tr>
+<th>Nurse ID</th>
+<th>Name</th>
+<th>Ward</th>
+</tr>
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+const ADMIN_PASSWORD = "admin123";
+
+window.onload = function(){
+
+document.getElementById("adminLoginScreen").style.display = "flex";
+document.getElementById("adminMain").style.display = "none";
+
+loadDoctors();
+loadNurses();
+loadCounts();
+
+};
+
+function checkAdminPassword(){
+
+let pass = document.getElementById("adminPassword").value;
+
+if(pass === ADMIN_PASSWORD){
+
+document.getElementById("adminLoginScreen").style.display = "none";
+document.getElementById("adminMain").style.display = "block";
+
+}else{
+
+document.getElementById("passwordError").style.display = "block";
+
+}
+
+}
+
+document.getElementById("adminPassword").addEventListener("keydown", function(event){
+if(event.key === "Enter"){
+checkAdminPassword();
+}
+});
+
+let defaultDoctors = [
+{id:"SM101",name:"dr sivam",password:"1234",department:"Cardiology"},
+{id:"SM102",name:"dr arun",password:"5678",department:"Neurology"},
+{id:"SM103",name:"dr priya",password:"9999",department:"Pediatrics"}
+];
+
+let defaultNurses = [
+{id:"NR101",name:"nurse meena",ward:"Emergency"},
+{id:"NR102",name:"nurse kavitha",ward:"ICU"}
+];
+
+let doctors = JSON.parse(localStorage.getItem("doctors"));
+
+if(!doctors){
+doctors = defaultDoctors;
+localStorage.setItem("doctors",JSON.stringify(doctors));
+}
+
+let nurses = JSON.parse(localStorage.getItem("nurses"));
+
+if(!nurses){
+nurses = defaultNurses;
+localStorage.setItem("nurses",JSON.stringify(nurses));
+}
+
+function loadCounts(){
+
+let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+let admittedPatients = JSON.parse(localStorage.getItem("admittedPatients")) || [];
+
+let admitted = admittedPatients.filter(patient =>
+patient.status === "Admitted"
+);
+
+let discharged = admittedPatients.filter(patient =>
+patient.status === "Discharged"
+);
+
+document.getElementById("doctorCount").innerText = doctors.length;
+document.getElementById("nurseCount").innerText = nurses.length;
+document.getElementById("dailyPatientCount").innerText = appointments.length;
+document.getElementById("admittedPatientCount").innerText = admitted.length;
+document.getElementById("dischargeCount").innerText = discharged.length;
+
+}
+
+function loadDoctors(){
+
+let table = document.getElementById("doctorTable");
+
+table.innerHTML = `
+<tr>
+<th>Doctor ID</th>
+<th>Name</th>
+<th>Password</th>
+<th>Department</th>
+</tr>
+`;
+
+doctors.forEach(doc => {
+table.innerHTML += `
+<tr>
+<td>${doc.id}</td>
+<td>${doc.name}</td>
+<td>${doc.password}</td>
+<td>${doc.department}</td>
+</tr>
+`;
+});
+
+loadCounts();
+
+}
+
+function loadNurses(){
+
+let table = document.getElementById("nurseTable");
+
+table.innerHTML = `
+<tr>
+<th>Nurse ID</th>
+<th>Name</th>
+<th>Ward</th>
+</tr>
+`;
+
+nurses.forEach(nurse => {
+table.innerHTML += `
+<tr>
+<td>${nurse.id}</td>
+<td>${nurse.name}</td>
+<td>${nurse.ward}</td>
+</tr>
+`;
+});
+
+loadCounts();
+
+}
+
+function addDoctor(event){
+
+event.preventDefault();
+
+let id = document.getElementById("newDoctorId").value;
+let name = document.getElementById("newDoctorName").value;
+let password = document.getElementById("newDoctorPassword").value;
+let department = document.getElementById("newDoctorDepartment").value;
+
+doctors.push({
+id:id,
+name:name.toLowerCase(),
+password:password,
+department:department
+});
+
+localStorage.setItem("doctors",JSON.stringify(doctors));
+
+loadDoctors();
+
+alert("Doctor Added Successfully");
+
+event.target.reset();
+
+}
+
+function addNurse(event){
+
+event.preventDefault();
+
+let id = document.getElementById("newNurseId").value;
+let name = document.getElementById("newNurseName").value;
+let ward = document.getElementById("newNurseWard").value;
+
+nurses.push({
+id:id,
+name:name.toLowerCase(),
+ward:ward
+});
+
+localStorage.setItem("nurses",JSON.stringify(nurses));
+
+loadNurses();
+
+alert("Nurse Added Successfully");
+
+event.target.reset();
+
+}
+</script>
+
+</body>
+</html>
