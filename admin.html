@@ -1,6 +1,4 @@
-<!-- Admin password page-la sidebar visible irukkum full code -->
-<!-- Password: admin123 -->
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +7,11 @@
 
 <title>Admin Panel</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -23,7 +23,7 @@ body{
 background:#020617;
 display:flex;
 min-height:100vh;
-overflow-y:auto;
+overflow-x:hidden;
 color:white;
 }
 
@@ -39,12 +39,14 @@ left:0;
 top:0;
 border-right:1px solid rgba(255,255,255,.05);
 z-index:10000;
+overflow-y:auto;
 }
 
 .logo{
 font-size:24px;
 font-weight:bold;
 margin-bottom:40px;
+text-align:center;
 }
 
 .logo span{
@@ -61,6 +63,7 @@ border-radius:12px;
 text-decoration:none;
 color:white;
 transition:.3s;
+font-size:15px;
 }
 
 .sidebar a:hover{
@@ -84,13 +87,15 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
+padding:20px;
 }
 
 .admin-login-box{
 background:#111827;
 padding:35px;
 border-radius:20px;
-width:350px;
+width:100%;
+max-width:380px;
 box-shadow:0 0 25px rgba(56,189,248,.25);
 text-align:center;
 }
@@ -98,6 +103,7 @@ text-align:center;
 .admin-login-box h2{
 color:#38bdf8;
 margin-bottom:20px;
+font-size:28px;
 }
 
 .admin-login-box input{
@@ -109,6 +115,7 @@ border-radius:10px;
 background:#1e293b;
 color:white;
 outline:none;
+font-size:15px;
 }
 
 .admin-login-box button{
@@ -120,6 +127,11 @@ background:#38bdf8;
 color:white;
 cursor:pointer;
 font-size:16px;
+transition:.3s;
+}
+
+.admin-login-box button:hover{
+background:#0ea5e9;
 }
 
 .error{
@@ -139,15 +151,17 @@ display:none;
 
 .title{
 text-align:center;
-font-size:35px;
+font-size:38px;
 margin-bottom:30px;
 color:#38bdf8;
 }
 
 .container{
-max-width:1200px;
+max-width:1300px;
 margin:auto;
 }
+
+/* CARDS */
 
 .cards{
 display:grid;
@@ -162,12 +176,17 @@ padding:25px;
 border-radius:20px;
 text-align:center;
 box-shadow:0 0 20px rgba(56,189,248,.15);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card i{
 font-size:38px;
 color:#38bdf8;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
 .card h2{
@@ -179,24 +198,27 @@ margin-bottom:5px;
 color:#cbd5e1;
 }
 
+/* FORMS */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+margin-bottom:25px;
+}
+
 .form-box,
 .table-box{
 background:#111827;
 padding:25px;
 border-radius:20px;
-margin-bottom:25px;
 box-shadow:0 0 20px rgba(56,189,248,.15);
 }
 
 .form-box h2,
 .table-box h2{
 margin-bottom:20px;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
+color:#38bdf8;
 }
 
 input,
@@ -220,11 +242,14 @@ background:#38bdf8;
 color:white;
 cursor:pointer;
 transition:.3s;
+font-weight:bold;
 }
 
 button:hover{
 background:#0ea5e9;
 }
+
+/* TABLE */
 
 .table-scroll{
 overflow-x:auto;
@@ -253,7 +278,29 @@ td{
 background:#1e293b;
 }
 
-/* MOBILE */
+/* TABLE ACTION BUTTON */
+
+.delete-btn{
+background:#ef4444;
+padding:8px 14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+color:white;
+font-size:13px;
+}
+
+.delete-btn:hover{
+background:#dc2626;
+}
+
+/* TABLES GAP */
+
+.table-box{
+margin-bottom:25px;
+}
+
+/* TABLET */
 
 @media(max-width:900px){
 
@@ -264,7 +311,6 @@ padding:15px 10px;
 
 .logo{
 font-size:12px;
-text-align:center;
 }
 
 .sidebar a{
@@ -273,7 +319,7 @@ justify-content:center;
 }
 
 .sidebar a i{
-font-size:18px;
+font-size:20px;
 }
 
 .admin-login-screen{
@@ -292,14 +338,125 @@ grid-template-columns:1fr;
 }
 
 .title{
-font-size:25px;
+font-size:28px;
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+body{
+display:block;
+}
+
+/* BOTTOM NAVIGATION */
+
+.sidebar{
+width:100%;
+height:70px;
+position:fixed;
+bottom:0;
+top:auto;
+left:0;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:5px;
+border-right:none;
+border-top:1px solid rgba(255,255,255,.08);
+overflow:hidden;
+}
+
+.logo{
+display:none;
+}
+
+.sidebar a{
+margin:0;
+padding:10px;
+font-size:0;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.sidebar a i{
+font-size:20px;
+}
+
+/* LOGIN */
+
+.admin-login-screen{
+left:0;
+width:100%;
+height:calc(100vh - 70px);
+padding:15px;
+}
+
+.admin-login-box{
+padding:25px;
+border-radius:18px;
+}
+
+/* MAIN */
+
+.main{
+margin-left:0;
+width:100%;
+padding:15px;
+padding-bottom:100px;
+}
+
+.title{
+font-size:24px;
+margin-bottom:20px;
+}
+
+.cards{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.card{
+padding:20px;
+}
+
+.card h2{
+font-size:28px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.form-box,
+.table-box{
+padding:18px;
+border-radius:16px;
+}
+
+input,
+button{
+font-size:14px;
+padding:13px;
 }
 
 table{
+min-width:650px;
 font-size:13px;
 }
 
+th,
+td{
+padding:12px;
+white-space:nowrap;
 }
+
+}
+
 </style>
 </head>
 
@@ -313,39 +470,34 @@ font-size:13px;
 Sivam<span>Medicare</span>
 </div>
 
-<a href="index.html">
-<i class="fas fa-home"></i>
-Home
+<a href="#" class="active">
+<i class="fas fa-lock"></i>
+Admin
 </a>
 
-<a href="service.html">
-<i class="fas fa-stethoscope"></i>
-Services
-</a>
-
-<a href="doctor-login.html">
+<a href="#">
 <i class="fas fa-user-doctor"></i>
-Doctor Login
+Doctors
 </a>
 
-<a href="patients.html">
+<a href="#">
+<i class="fas fa-user-nurse"></i>
+Nurses
+</a>
+
+<a href="#">
 <i class="fas fa-hospital-user"></i>
 Patients
 </a>
 
-<a href="appointment.html">
+<a href="#">
 <i class="fas fa-calendar-check"></i>
-Appointment
-</a>
-
-<a href="admin.html" class="active">
-<i class="fas fa-lock"></i>
-Admin Panel
+Appointments
 </a>
 
 </div>
 
-<!-- PASSWORD SCREEN -->
+<!-- LOGIN -->
 
 <div class="admin-login-screen" id="adminLoginScreen">
 
@@ -353,7 +505,9 @@ Admin Panel
 
 <h2>Admin Password</h2>
 
-<input type="password" id="adminPassword" placeholder="Enter Password">
+<input type="password"
+id="adminPassword"
+placeholder="Enter Password">
 
 <button onclick="checkAdminPassword()">
 Open Admin Panel
@@ -364,15 +518,20 @@ Wrong Password
 </p>
 
 </div>
+
 </div>
 
 <!-- MAIN -->
 
 <div class="main" id="adminMain">
 
-<h1 class="title">Admin Panel</h1>
+<h1 class="title">
+Admin Panel
+</h1>
 
 <div class="container">
+
+<!-- CARDS -->
 
 <div class="cards">
 
@@ -408,6 +567,8 @@ Wrong Password
 
 </div>
 
+<!-- FORMS -->
+
 <div class="form-grid">
 
 <div class="form-box">
@@ -416,10 +577,25 @@ Wrong Password
 
 <form onsubmit="addDoctor(event)">
 
-<input type="text" id="newDoctorId" placeholder="Doctor ID" required>
-<input type="text" id="newDoctorName" placeholder="Doctor Name" required>
-<input type="password" id="newDoctorPassword" placeholder="Doctor Password" required>
-<input type="text" id="newDoctorDepartment" placeholder="Department" required>
+<input type="text"
+id="newDoctorId"
+placeholder="Doctor ID"
+required>
+
+<input type="text"
+id="newDoctorName"
+placeholder="Doctor Name"
+required>
+
+<input type="password"
+id="newDoctorPassword"
+placeholder="Doctor Password"
+required>
+
+<input type="text"
+id="newDoctorDepartment"
+placeholder="Department"
+required>
 
 <button type="submit">
 Add Doctor
@@ -435,9 +611,20 @@ Add Doctor
 
 <form onsubmit="addNurse(event)">
 
-<input type="text" id="newNurseId" placeholder="Nurse ID" required>
-<input type="text" id="newNurseName" placeholder="Nurse Name" required>
-<input type="text" id="newNurseWard" placeholder="Ward" required>
+<input type="text"
+id="newNurseId"
+placeholder="Nurse ID"
+required>
+
+<input type="text"
+id="newNurseName"
+placeholder="Nurse Name"
+required>
+
+<input type="text"
+id="newNurseWard"
+placeholder="Ward"
+required>
 
 <button type="submit">
 Add Nurse
@@ -449,6 +636,8 @@ Add Nurse
 
 </div>
 
+<!-- DOCTOR TABLE -->
+
 <div class="table-box">
 
 <h2>Doctor List</h2>
@@ -456,17 +645,22 @@ Add Nurse
 <div class="table-scroll">
 
 <table id="doctorTable">
+
 <tr>
-<th>Doctor ID</th>
+<th>ID</th>
 <th>Name</th>
 <th>Password</th>
 <th>Department</th>
+<th>Delete</th>
 </tr>
+
 </table>
 
 </div>
 
 </div>
+
+<!-- NURSE TABLE -->
 
 <div class="table-box">
 
@@ -475,11 +669,14 @@ Add Nurse
 <div class="table-scroll">
 
 <table id="nurseTable">
+
 <tr>
-<th>Nurse ID</th>
+<th>ID</th>
 <th>Name</th>
 <th>Ward</th>
+<th>Delete</th>
 </tr>
+
 </table>
 
 </div>
@@ -491,6 +688,7 @@ Add Nurse
 </div>
 
 <script>
+
 const ADMIN_PASSWORD = "admin123";
 
 window.onload = function(){
@@ -502,15 +700,19 @@ loadDoctors();
 loadNurses();
 loadCounts();
 
-};
+}
+
+/* LOGIN */
 
 function checkAdminPassword(){
 
-let pass = document.getElementById("adminPassword").value;
+let pass =
+document.getElementById("adminPassword").value;
 
 if(pass === ADMIN_PASSWORD){
 
 document.getElementById("adminLoginScreen").style.display = "none";
+
 document.getElementById("adminMain").style.display = "block";
 
 }else{
@@ -521,129 +723,232 @@ document.getElementById("passwordError").style.display = "block";
 
 }
 
-document.getElementById("adminPassword").addEventListener("keydown", function(event){
+document.getElementById("adminPassword")
+.addEventListener("keydown",function(event){
+
 if(event.key === "Enter"){
 checkAdminPassword();
 }
+
 });
 
+/* DATA */
+
 let defaultDoctors = [
-{id:"SM101",name:"dr sivam",password:"1234",department:"Cardiology"},
-{id:"SM102",name:"dr arun",password:"5678",department:"Neurology"},
-{id:"SM103",name:"dr priya",password:"9999",department:"Pediatrics"}
+
+{
+id:"SM101",
+name:"Dr Sivam",
+password:"1234",
+department:"Cardiology"
+},
+
+{
+id:"SM102",
+name:"Dr Arun",
+password:"5678",
+department:"Neurology"
+},
+
+{
+id:"SM103",
+name:"Dr Priya",
+password:"9999",
+department:"Pediatrics"
+}
+
 ];
 
 let defaultNurses = [
-{id:"NR101",name:"nurse meena",ward:"Emergency"},
-{id:"NR102",name:"nurse kavitha",ward:"ICU"}
+
+{
+id:"NR101",
+name:"Nurse Meena",
+ward:"Emergency"
+},
+
+{
+id:"NR102",
+name:"Nurse Kavitha",
+ward:"ICU"
+}
+
 ];
 
-let doctors = JSON.parse(localStorage.getItem("doctors"));
+let doctors =
+JSON.parse(localStorage.getItem("doctors"));
 
 if(!doctors){
+
 doctors = defaultDoctors;
-localStorage.setItem("doctors",JSON.stringify(doctors));
+
+localStorage.setItem(
+"doctors",
+JSON.stringify(doctors)
+);
+
 }
 
-let nurses = JSON.parse(localStorage.getItem("nurses"));
+let nurses =
+JSON.parse(localStorage.getItem("nurses"));
 
 if(!nurses){
+
 nurses = defaultNurses;
-localStorage.setItem("nurses",JSON.stringify(nurses));
+
+localStorage.setItem(
+"nurses",
+JSON.stringify(nurses)
+);
+
 }
+
+/* COUNTS */
 
 function loadCounts(){
 
-let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-let admittedPatients = JSON.parse(localStorage.getItem("admittedPatients")) || [];
+let appointments =
+JSON.parse(localStorage.getItem("appointments")) || [];
 
-let admitted = admittedPatients.filter(patient =>
+let admittedPatients =
+JSON.parse(localStorage.getItem("admittedPatients")) || [];
+
+let admitted =
+admittedPatients.filter(patient =>
 patient.status === "Admitted"
 );
 
-let discharged = admittedPatients.filter(patient =>
+let discharged =
+admittedPatients.filter(patient =>
 patient.status === "Discharged"
 );
 
-document.getElementById("doctorCount").innerText = doctors.length;
-document.getElementById("nurseCount").innerText = nurses.length;
-document.getElementById("dailyPatientCount").innerText = appointments.length;
-document.getElementById("admittedPatientCount").innerText = admitted.length;
-document.getElementById("dischargeCount").innerText = discharged.length;
+document.getElementById("doctorCount").innerText =
+doctors.length;
+
+document.getElementById("nurseCount").innerText =
+nurses.length;
+
+document.getElementById("dailyPatientCount").innerText =
+appointments.length;
+
+document.getElementById("admittedPatientCount").innerText =
+admitted.length;
+
+document.getElementById("dischargeCount").innerText =
+discharged.length;
 
 }
 
+/* LOAD DOCTORS */
+
 function loadDoctors(){
 
-let table = document.getElementById("doctorTable");
+let table =
+document.getElementById("doctorTable");
 
 table.innerHTML = `
 <tr>
-<th>Doctor ID</th>
+<th>ID</th>
 <th>Name</th>
 <th>Password</th>
 <th>Department</th>
+<th>Delete</th>
 </tr>
 `;
 
-doctors.forEach(doc => {
+doctors.forEach((doc,index)=>{
+
 table.innerHTML += `
 <tr>
 <td>${doc.id}</td>
 <td>${doc.name}</td>
 <td>${doc.password}</td>
 <td>${doc.department}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteDoctor(${index})">
+Delete
+</button>
+</td>
 </tr>
 `;
+
 });
 
 loadCounts();
 
 }
 
+/* LOAD NURSES */
+
 function loadNurses(){
 
-let table = document.getElementById("nurseTable");
+let table =
+document.getElementById("nurseTable");
 
 table.innerHTML = `
 <tr>
-<th>Nurse ID</th>
+<th>ID</th>
 <th>Name</th>
 <th>Ward</th>
+<th>Delete</th>
 </tr>
 `;
 
-nurses.forEach(nurse => {
+nurses.forEach((nurse,index)=>{
+
 table.innerHTML += `
 <tr>
 <td>${nurse.id}</td>
 <td>${nurse.name}</td>
 <td>${nurse.ward}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteNurse(${index})">
+Delete
+</button>
+</td>
 </tr>
 `;
+
 });
 
 loadCounts();
 
 }
 
+/* ADD DOCTOR */
+
 function addDoctor(event){
 
 event.preventDefault();
 
-let id = document.getElementById("newDoctorId").value;
-let name = document.getElementById("newDoctorName").value;
-let password = document.getElementById("newDoctorPassword").value;
-let department = document.getElementById("newDoctorDepartment").value;
+let id =
+document.getElementById("newDoctorId").value;
+
+let name =
+document.getElementById("newDoctorName").value;
+
+let password =
+document.getElementById("newDoctorPassword").value;
+
+let department =
+document.getElementById("newDoctorDepartment").value;
 
 doctors.push({
+
 id:id,
-name:name.toLowerCase(),
+name:name,
 password:password,
 department:department
+
 });
 
-localStorage.setItem("doctors",JSON.stringify(doctors));
+localStorage.setItem(
+"doctors",
+JSON.stringify(doctors)
+);
 
 loadDoctors();
 
@@ -653,21 +958,33 @@ event.target.reset();
 
 }
 
+/* ADD NURSE */
+
 function addNurse(event){
 
 event.preventDefault();
 
-let id = document.getElementById("newNurseId").value;
-let name = document.getElementById("newNurseName").value;
-let ward = document.getElementById("newNurseWard").value;
+let id =
+document.getElementById("newNurseId").value;
+
+let name =
+document.getElementById("newNurseName").value;
+
+let ward =
+document.getElementById("newNurseWard").value;
 
 nurses.push({
+
 id:id,
-name:name.toLowerCase(),
+name:name,
 ward:ward
+
 });
 
-localStorage.setItem("nurses",JSON.stringify(nurses));
+localStorage.setItem(
+"nurses",
+JSON.stringify(nurses)
+);
 
 loadNurses();
 
@@ -676,7 +993,45 @@ alert("Nurse Added Successfully");
 event.target.reset();
 
 }
+
+/* DELETE */
+
+function deleteDoctor(index){
+
+if(confirm("Delete Doctor?")){
+
+doctors.splice(index,1);
+
+localStorage.setItem(
+"doctors",
+JSON.stringify(doctors)
+);
+
+loadDoctors();
+
+}
+
+}
+
+function deleteNurse(index){
+
+if(confirm("Delete Nurse?")){
+
+nurses.splice(index,1);
+
+localStorage.setItem(
+"nurses",
+JSON.stringify(nurses)
+);
+
+loadNurses();
+
+}
+
+}
+
 </script>
 
 </body>
 </html>
+```
