@@ -1,8 +1,3 @@
-<!-- ========================= -->
-<!-- FILE NAME :service.html -->
-<!-- SERVICES PAGE WITH HOSPITAL DATA -->
-<!-- ========================= -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +22,7 @@ background:#020617;
 color:white;
 display:flex;
 min-height:100vh;
+overflow-x:hidden;
 }
 
 /* SIDEBAR */
@@ -39,12 +35,15 @@ position:fixed;
 left:0;
 top:0;
 height:100vh;
+z-index:1000;
+border-right:1px solid rgba(255,255,255,.06);
 }
 
 .logo{
 font-size:24px;
 font-weight:bold;
 margin-bottom:40px;
+text-align:center;
 }
 
 .logo span{
@@ -73,7 +72,7 @@ background:#38bdf8;
 
 .content{
 margin-left:270px;
-width:100%;
+width:calc(100% - 270px);
 padding:35px;
 }
 
@@ -84,7 +83,7 @@ color:#38bdf8;
 margin-bottom:30px;
 }
 
-/* DATA ENTRY */
+/* SECTION */
 
 .section{
 background:#111827;
@@ -98,6 +97,8 @@ box-shadow:0 0 20px rgba(56,189,248,.15);
 color:#38bdf8;
 margin-bottom:20px;
 }
+
+/* FORM */
 
 .form-grid{
 display:grid;
@@ -126,6 +127,7 @@ color:white;
 cursor:pointer;
 transition:.3s;
 margin-top:15px;
+font-weight:bold;
 }
 
 button:hover{
@@ -201,7 +203,7 @@ margin-bottom:10px;
 color:#cbd5e1;
 }
 
-/* MOBILE */
+/* TABLET */
 
 @media(max-width:900px){
 
@@ -221,25 +223,136 @@ justify-content:center;
 }
 
 .sidebar a i{
-font-size:18px;
+font-size:20px;
 }
 
 .content{
 margin-left:80px;
+width:calc(100% - 80px);
 padding:20px;
 }
 
 .title{
-font-size:28px;
+font-size:30px;
 }
 
 }
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+body{
+display:block;
+}
+
+/* bottom navigation */
+
+.sidebar{
+width:100%;
+height:70px;
+position:fixed;
+top:auto;
+bottom:0;
+left:0;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:6px;
+border-right:none;
+border-top:1px solid rgba(255,255,255,.1);
+overflow:hidden;
+}
+
+.logo{
+display:none;
+}
+
+.sidebar a{
+margin:0;
+padding:10px;
+font-size:0;
+justify-content:center;
+}
+
+.sidebar a i{
+font-size:20px;
+}
+
+/* content */
+
+.content{
+margin-left:0;
+width:100%;
+padding:15px;
+padding-bottom:95px;
+}
+
+.title{
+font-size:25px;
+margin-bottom:20px;
+}
+
+.section{
+padding:18px;
+border-radius:16px;
+}
+
+.section h2{
+font-size:22px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+gap:12px;
+}
+
+input,
+button{
+font-size:14px;
+padding:13px;
+}
+
+.top-box{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.box{
+padding:20px;
+}
+
+.box h3{
+font-size:28px;
+}
+
+.services{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.card{
+padding:25px;
+}
+
+.card i{
+font-size:45px;
+}
+
+.card h2{
+font-size:21px;
+}
+
+.card p{
+font-size:14px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
-
-<!-- SIDEBAR -->
 
 <div class="sidebar">
 
@@ -279,13 +392,9 @@ Admin Panel
 
 </div>
 
-<!-- CONTENT -->
-
 <div class="content">
 
 <h1 class="title">Services Dashboard</h1>
-
-<!-- HOSPITAL DATA ENTRY -->
 
 <div class="section">
 
@@ -312,8 +421,6 @@ Save Hospital Data
 </form>
 
 </div>
-
-<!-- TOP DATA BOXES -->
 
 <div class="top-box">
 
@@ -348,8 +455,6 @@ Save Hospital Data
 </div>
 
 </div>
-
-<!-- SERVICE CARDS -->
 
 <div class="services">
 
@@ -388,39 +493,30 @@ Save Hospital Data
 </div>
 
 <script>
-
-/* DEFAULT DOCTORS */
-
 let defaultDoctors = [
 {id:"SM101", name:"dr sivam", password:"1234", department:"Cardiology"},
 {id:"SM102", name:"dr arun", password:"5678", department:"Neurology"},
 {id:"SM103", name:"dr priya", password:"9999", department:"Pediatrics"}
 ];
 
-let doctors =
-JSON.parse(localStorage.getItem("doctors"));
+let doctors = JSON.parse(localStorage.getItem("doctors"));
 
 if(!doctors){
 doctors = defaultDoctors;
 localStorage.setItem("doctors", JSON.stringify(doctors));
 }
 
-/* DEFAULT NURSES */
-
 let defaultNurses = [
 {id:"NR101", name:"nurse meena", ward:"Emergency"},
 {id:"NR102", name:"nurse kavitha", ward:"ICU"}
 ];
 
-let nurses =
-JSON.parse(localStorage.getItem("nurses"));
+let nurses = JSON.parse(localStorage.getItem("nurses"));
 
 if(!nurses){
 nurses = defaultNurses;
 localStorage.setItem("nurses", JSON.stringify(nurses));
 }
-
-/* LOAD COUNTS */
 
 function loadCounts(){
 
@@ -440,8 +536,6 @@ document.getElementById("patientCount").innerText =
 appointments.length + admittedPatients.length;
 
 }
-
-/* SAVE HOSPITAL DATA */
 
 function saveHospitalData(event){
 
@@ -466,8 +560,6 @@ alert("Hospital Data Saved Successfully");
 event.target.reset();
 
 }
-
-/* LOAD HOSPITAL DATA */
 
 function loadHospitalData(){
 
@@ -495,11 +587,8 @@ hospitalData.operation;
 
 }
 
-/* INITIAL LOAD */
-
 loadCounts();
 loadHospitalData();
-
 </script>
 
 </body>
