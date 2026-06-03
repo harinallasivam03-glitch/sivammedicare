@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sivam Medicare - Home</title>
 
@@ -11,17 +10,12 @@ content="width=device-width, initial-scale=1.0">
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-
-/* RESET */
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
-
-/* BODY */
 
 body{
 background:#020617;
@@ -31,8 +25,6 @@ min-height:100vh;
 overflow-x:hidden;
 }
 
-/* SIDEBAR */
-
 .sidebar{
 width:270px;
 background:#0f172a;
@@ -41,7 +33,7 @@ position:fixed;
 left:0;
 top:0;
 height:100vh;
-overflow-y:auto;
+z-index:1000;
 border-right:1px solid rgba(255,255,255,.05);
 }
 
@@ -49,14 +41,12 @@ border-right:1px solid rgba(255,255,255,.05);
 font-size:24px;
 font-weight:bold;
 margin-bottom:40px;
-color:white;
+text-align:center;
 }
 
 .logo span{
 color:#38bdf8;
 }
-
-/* SIDEBAR BUTTONS */
 
 .sidebar a{
 display:flex;
@@ -72,41 +62,28 @@ font-size:16px;
 background:#111827;
 }
 
-.sidebar a:hover{
-background:#1e293b;
-}
-
+.sidebar a:hover,
 .sidebar a.active{
 background:#38bdf8;
 }
 
-/* CONTENT */
-
 .content{
 margin-left:270px;
-width:100%;
+width:calc(100% - 270px);
 }
 
-/* HERO SECTION */
-
 .hero{
-height:100vh;
-
+min-height:100vh;
 background:
-linear-gradient(rgba(0,0,0,0.7),
-rgba(0,0,0,0.7)),
-
+linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),
 url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop')
 center/cover no-repeat;
-
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
+padding:25px;
 }
-
-/* HERO CONTENT */
 
 .hero-content{
 max-width:850px;
@@ -125,8 +102,6 @@ line-height:1.7;
 margin-bottom:30px;
 }
 
-/* BUTTONS */
-
 .hero-buttons{
 display:flex;
 justify-content:center;
@@ -141,16 +116,12 @@ border-radius:12px;
 font-size:18px;
 cursor:pointer;
 transition:.3s;
+font-weight:bold;
 }
 
 .book-btn{
 background:#38bdf8;
 color:white;
-}
-
-.book-btn:hover{
-background:#0ea5e9;
-transform:translateY(-3px);
 }
 
 .service-btn{
@@ -159,12 +130,13 @@ color:white;
 border:1px solid #38bdf8;
 }
 
+.book-btn:hover,
 .service-btn:hover{
-background:#38bdf8;
+background:#0ea5e9;
 transform:translateY(-3px);
 }
 
-/* MOBILE */
+/* TABLET */
 
 @media(max-width:900px){
 
@@ -175,7 +147,6 @@ padding:15px 10px;
 
 .logo{
 font-size:12px;
-text-align:center;
 }
 
 .sidebar a{
@@ -185,16 +156,12 @@ padding:15px 10px;
 }
 
 .sidebar a i{
-font-size:18px;
-margin:0;
+font-size:20px;
 }
 
 .content{
 margin-left:80px;
-}
-
-.hero{
-padding:25px;
+width:calc(100% - 80px);
 }
 
 .hero h1{
@@ -205,12 +172,76 @@ font-size:38px;
 font-size:18px;
 }
 
-.hero button{
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+body{
+display:block;
+}
+
+.sidebar{
 width:100%;
+height:70px;
+position:fixed;
+top:auto;
+bottom:0;
+left:0;
+display:flex;
+align-items:center;
+justify-content:space-around;
+padding:6px;
+border-right:none;
+border-top:1px solid rgba(255,255,255,.1);
+overflow:hidden;
+}
+
+.logo{
+display:none;
+}
+
+.sidebar a{
+margin:0;
+padding:10px;
+font-size:0;
+justify-content:center;
+background:transparent;
+}
+
+.sidebar a i{
+font-size:20px;
+}
+
+.content{
+margin-left:0;
+width:100%;
+}
+
+.hero{
+min-height:100vh;
+padding:25px 15px 95px;
+}
+
+.hero h1{
+font-size:33px;
+}
+
+.hero p{
+font-size:16px;
+line-height:1.6;
 }
 
 .hero-buttons{
 flex-direction:column;
+gap:15px;
+}
+
+.hero button{
+width:100%;
+font-size:16px;
+padding:14px;
 }
 
 }
@@ -220,72 +251,51 @@ flex-direction:column;
 
 <body>
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <div class="logo">
 Sivam<span>Medicare</span>
 </div>
 
-<a href="index.html"
-class="active">
-
+<a href="index.html" class="active">
 <i class="fa-solid fa-house"></i>
 Home
-
 </a>
 
 <a href="service.html">
-
 <i class="fa-solid fa-stethoscope"></i>
 Services
-
 </a>
 
 <a href="doctor-login.html">
-
 <i class="fa-solid fa-user-doctor"></i>
 Doctor Login
-
 </a>
 
 <a href="patients.html">
-
 <i class="fas fa-hospital-user"></i>
 Patients
-
 </a>
 
 <a href="appointment.html">
-
 <i class="fa-solid fa-calendar-check"></i>
 Appointment
-
 </a>
 
 <a href="admin.html">
-
 <i class="fa-solid fa-lock"></i>
 Admin Panel
-
 </a>
 
 </div>
 
-<!-- CONTENT -->
-
 <div class="content">
-
-<!-- HERO -->
 
 <section class="hero">
 
 <div class="hero-content">
 
-<h1>
-Welcome To Sivam Medicare
-</h1>
+<h1>Welcome To Sivam Medicare</h1>
 
 <p>
 24/7 Emergency Services With Experienced Doctors,
@@ -297,16 +307,12 @@ Trusted Medical Support And Patient Friendly Care.
 
 <button class="book-btn"
 onclick="window.location.href='appointment.html'">
-
 Book Appointment
-
 </button>
 
-<button class="Addmisson Room-btn"
+<button class="service-btn"
 onclick="window.location.href='patients.html'">
-
-Addmisson Room
-
+Admission Room
 </button>
 
 </div>
