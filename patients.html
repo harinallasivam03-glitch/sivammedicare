@@ -22,6 +22,7 @@ background:#020617;
 color:white;
 display:flex;
 min-height:100vh;
+overflow-x:hidden;
 }
 
 /* SIDEBAR */
@@ -34,6 +35,8 @@ position:fixed;
 left:0;
 top:0;
 height:100vh;
+z-index:1000;
+border-right:1px solid rgba(255,255,255,.06);
 }
 
 .logo{
@@ -41,6 +44,7 @@ font-size:24px;
 font-weight:bold;
 color:white;
 margin-bottom:40px;
+text-align:center;
 }
 
 .logo span{
@@ -60,10 +64,7 @@ transition:.3s;
 font-size:16px;
 }
 
-.sidebar a:hover{
-background:#1e293b;
-}
-
+.sidebar a:hover,
 .sidebar a.active{
 background:#38bdf8;
 }
@@ -72,7 +73,7 @@ background:#38bdf8;
 
 .content{
 margin-left:270px;
-width:100%;
+width:calc(100% - 270px);
 padding:35px;
 }
 
@@ -155,11 +156,17 @@ color:white;
 outline:none;
 }
 
+select option{
+background:#1e293b;
+color:white;
+}
+
 button{
 background:#38bdf8;
 color:white;
 cursor:pointer;
 transition:.3s;
+font-weight:bold;
 }
 
 button:hover{
@@ -226,7 +233,7 @@ font-size:13px;
 background:#dc2626;
 }
 
-/* MOBILE */
+/* TABLET */
 
 @media(max-width:900px){
 
@@ -246,16 +253,17 @@ justify-content:center;
 }
 
 .sidebar a i{
-font-size:18px;
+font-size:20px;
 }
 
 .content{
 margin-left:80px;
+width:calc(100% - 80px);
 padding:20px;
 }
 
 .title{
-font-size:28px;
+font-size:30px;
 }
 
 .table-scroll{
@@ -263,6 +271,113 @@ height:260px;
 }
 
 }
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+body{
+display:block;
+}
+
+/* bottom navigation */
+
+.sidebar{
+width:100%;
+height:70px;
+position:fixed;
+top:auto;
+bottom:0;
+left:0;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:6px;
+border-right:none;
+border-top:1px solid rgba(255,255,255,.1);
+overflow:hidden;
+}
+
+.logo{
+display:none;
+}
+
+.sidebar a{
+margin:0;
+padding:10px;
+font-size:0;
+justify-content:center;
+}
+
+.sidebar a i{
+font-size:20px;
+}
+
+/* content */
+
+.content{
+margin-left:0;
+width:100%;
+padding:15px;
+padding-bottom:95px;
+}
+
+.title{
+font-size:25px;
+margin-bottom:20px;
+}
+
+.cards{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.card{
+padding:20px;
+}
+
+.card h2{
+font-size:28px;
+}
+
+.section{
+padding:18px;
+border-radius:16px;
+}
+
+.section h2{
+font-size:22px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+gap:12px;
+}
+
+input,
+select,
+button{
+font-size:14px;
+padding:13px;
+}
+
+.table-scroll{
+height:260px;
+}
+
+table{
+min-width:850px;
+font-size:13px;
+}
+
+th,
+td{
+padding:12px;
+white-space:nowrap;
+}
+
+}
+
 </style>
 </head>
 
@@ -532,11 +647,11 @@ admittedPatients.forEach((data,index) => {
 
 table.innerHTML += `
 <tr>
-<td>${data.name}</td>
-<td>${data.room}</td>
-<td>${data.doctor}</td>
-<td>${data.disease}</td>
-<td>${data.status}</td>
+<td>${data.name || "-"}</td>
+<td>${data.room || "-"}</td>
+<td>${data.doctor || "-"}</td>
+<td>${data.disease || "-"}</td>
+<td>${data.status || "-"}</td>
 <td>
 <button class="delete-btn" onclick="deleteAdmittedPatient(${index})">
 Delete
@@ -547,8 +662,6 @@ Delete
 
 });
 
-/* ONLY ADMITTED COUNT */
-
 let onlyAdmitted =
 admittedPatients.filter(patient =>
 patient.status === "Admitted"
@@ -556,8 +669,6 @@ patient.status === "Admitted"
 
 document.getElementById("admitCount").innerText =
 onlyAdmitted.length;
-
-/* DISCHARGED COUNT */
 
 let discharged =
 admittedPatients.filter(patient =>
@@ -621,6 +732,8 @@ event.target.reset();
 
 function deleteAdmittedPatient(index){
 
+if(confirm("Delete Patient?")){
+
 admittedPatients.splice(index,1);
 
 localStorage.setItem(
@@ -629,6 +742,8 @@ JSON.stringify(admittedPatients)
 );
 
 loadAdmittedPatients();
+
+}
 
 }
 
