@@ -3,19 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Doctor Dashboard</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
 body{
 background:#020617;
 color:white;
 display:flex;
 min-height:100vh;
+overflow-x:hidden;
 }
+
+/* SIDEBAR */
 
 .sidebar{
 width:270px;
@@ -25,15 +35,20 @@ position:fixed;
 left:0;
 top:0;
 height:100vh;
+z-index:1000;
+border-right:1px solid rgba(255,255,255,.06);
 }
 
 .logo{
 font-size:24px;
 font-weight:bold;
 margin-bottom:40px;
+text-align:center;
 }
 
-.logo span{color:#38bdf8;}
+.logo span{
+color:#38bdf8;
+}
 
 .sidebar a{
 display:flex;
@@ -45,6 +60,8 @@ padding:15px;
 border-radius:12px;
 margin-bottom:12px;
 background:#111827;
+transition:.3s;
+font-size:16px;
 }
 
 .sidebar a:hover,
@@ -52,9 +69,15 @@ background:#111827;
 background:#38bdf8;
 }
 
+.logout-btn{
+background:#ef4444 !important;
+}
+
+/* CONTENT */
+
 .content{
 margin-left:270px;
-width:100%;
+width:calc(100% - 270px);
 padding:35px;
 }
 
@@ -71,6 +94,8 @@ color:#cbd5e1;
 margin-bottom:30px;
 text-transform:capitalize;
 }
+
+/* CARDS */
 
 .cards{
 display:grid;
@@ -101,6 +126,8 @@ font-size:32px;
 color:#cbd5e1;
 }
 
+/* SECTION */
+
 .section{
 background:#111827;
 padding:25px;
@@ -114,6 +141,8 @@ color:#38bdf8;
 margin-bottom:20px;
 }
 
+/* TABLE */
+
 .table-scroll{
 overflow-x:auto;
 border-radius:10px;
@@ -125,7 +154,8 @@ border-collapse:collapse;
 min-width:800px;
 }
 
-th,td{
+th,
+td{
 border:1px solid #374151;
 padding:14px;
 text-align:center;
@@ -141,11 +171,10 @@ background:#1e293b;
 color:white;
 }
 
-.logout-btn{
-background:#ef4444 !important;
-}
+/* TABLET */
 
 @media(max-width:900px){
+
 .sidebar{
 width:80px;
 padding:15px 10px;
@@ -162,18 +191,116 @@ justify-content:center;
 }
 
 .sidebar a i{
-font-size:18px;
+font-size:20px;
 }
 
 .content{
 margin-left:80px;
+width:calc(100% - 80px);
 padding:20px;
 }
 
 .title{
+font-size:30px;
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+body{
+display:block;
+}
+
+/* bottom navigation */
+
+.sidebar{
+width:100%;
+height:70px;
+position:fixed;
+top:auto;
+bottom:0;
+left:0;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:6px;
+border-right:none;
+border-top:1px solid rgba(255,255,255,.1);
+overflow:hidden;
+}
+
+.logo{
+display:none;
+}
+
+.sidebar a{
+margin:0;
+padding:10px;
+font-size:0;
+justify-content:center;
+}
+
+.sidebar a i{
+font-size:20px;
+}
+
+/* content */
+
+.content{
+margin-left:0;
+width:100%;
+padding:15px;
+padding-bottom:95px;
+}
+
+.title{
+font-size:25px;
+margin-bottom:8px;
+}
+
+.sub-title{
+font-size:14px;
+margin-bottom:20px;
+}
+
+.cards{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.card{
+padding:20px;
+}
+
+.card h2{
 font-size:28px;
 }
+
+.section{
+padding:18px;
+border-radius:16px;
 }
+
+.section h2{
+font-size:21px;
+}
+
+table{
+min-width:760px;
+font-size:13px;
+}
+
+th,
+td{
+padding:12px;
+white-space:nowrap;
+}
+
+}
+
 </style>
 </head>
 
@@ -287,12 +414,13 @@ Logout
 </div>
 
 <script>
+
 let currentDoctor =
 JSON.parse(localStorage.getItem("currentDoctor"));
 
 if(!currentDoctor){
 alert("Please login first");
-window.location.href = "hos-doctor-login.html";
+window.location.href = "doctor-login.html";
 }
 
 document.getElementById("doctorTitle").innerText =
@@ -374,10 +502,10 @@ admittedTable.innerHTML = `
 myAdmitted.forEach(patient => {
 admittedTable.innerHTML += `
 <tr>
-<td>${patient.name}</td>
-<td>${patient.room}</td>
-<td>${patient.disease}</td>
-<td>${patient.status}</td>
+<td>${patient.name || "-"}</td>
+<td>${patient.room || "-"}</td>
+<td>${patient.disease || "-"}</td>
+<td>${patient.status || "-"}</td>
 </tr>
 `;
 });
@@ -399,10 +527,10 @@ dischargeTable.innerHTML = `
 myDischarged.forEach(patient => {
 dischargeTable.innerHTML += `
 <tr>
-<td>${patient.name}</td>
-<td>${patient.room}</td>
-<td>${patient.disease}</td>
-<td>${patient.status}</td>
+<td>${patient.name || "-"}</td>
+<td>${patient.room || "-"}</td>
+<td>${patient.disease || "-"}</td>
+<td>${patient.status || "-"}</td>
 </tr>
 `;
 });
@@ -411,10 +539,11 @@ dischargeTable.innerHTML += `
 
 function logoutDoctor(){
 localStorage.removeItem("currentDoctor");
-window.location.href = "hos-doctor-login.html";
+window.location.href = "doctor-login.html";
 }
 
 loadDoctorDashboard();
+
 </script>
 
 </body>
